@@ -23,4 +23,4 @@ services:
       - redis
     environment:
       - REDIS_HOST=redis
-
+      - PYTHONUNBUFFERED=1

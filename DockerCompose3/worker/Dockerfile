@@ -11,4 +11,4 @@ RUN pip install redis
 COPY worker.py .
 
 # Paleidžiam workerio scriptą
-CMD ["python", "worker.py"]
+CMD ["python3","worker.py"]
