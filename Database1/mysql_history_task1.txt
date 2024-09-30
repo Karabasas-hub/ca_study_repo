@@ -1,0 +1,19 @@
+_HiStOrY_V2_
+CREATE\040DATABASE\040unikas;
+USE\040unikas;
+CREATE\040TABLE\040studentai\040(
+ID\040int\040PRIMARY\040KEY\040AUTO_INCREMENT,
+name\040VARCHAR(100),
+age\040int
+);
+CREATE\040TABLE\040studentai\040(\040ID\040int\040PRIMARY\040KEY\040AUTO_INCREMENT,\040name\040VARCHAR(100),\040age\040int\040);
+INSERT\040INTO\040studentai\040(name,\040age)\040VALUES
+('Jonas\040Miegas',\04020),
+('Petricija\040Salnaityte',\04045),
+('Abraomas\040Kaktinskas',\04013),
+('Jonas\040Paulius\040MinusPirmasis',\04089);
+INSERT\040INTO\040studentai\040(name,\040age)\040VALUES\040('Jonas\040Miegas',\04020),\040('Petricija\040Salnaityte',\04045),\040('Abraomas\040Kaktinskas',\04013),\040('Jonas\040Paulius\040MinusPirmasis',\04089);
+SELECT\040*\040FROM\040studentai;
+exit
+
+visas volume is pirmos ir trecios uzd aplanke Database3

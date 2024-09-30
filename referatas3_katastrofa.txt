@@ -1,0 +1,21 @@
+The catastrophy plan
+
+
+First - I would ensure the data is completely backed up. This would be done through physical redundancy sites in 
+form of redundant data centres. I would pick the data centres to be far eough away from each other so that only
+one would be affected. Next I would implement full backups every day during least load hours, hourly incremental 
+backups and weekly differential backups to minimise the data stored. Lastly I would ensure physical backups as
+well as backups in the cloud. Lastly I would regularly check the integrity of the backups and perform test
+restorations.
+
+Once disaster hit - I would identify the affected data centres, determine the acceptable data loss and establish
+a time frame within which the database should be restored.
+
+Next I would restore from the backup, if neccessary reconfigure the database, test its integrity and document the 
+recovery.
+
+As fallback measures I would implement load balancers to distribute the traffic among multiple database instances.
+Additionally I would organise regular disaster drills so the staff knows what to do.
+
+Lastly I would periodically review and update the whole disaster recovery plan to adapt to new hardware installed,
+geopolitical changes or new regulations.

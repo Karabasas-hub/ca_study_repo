@@ -1,0 +1,14 @@
+While both relational and non-relational databases have quite a lot to offer - it all boils down to the works that needs to be done.
+Relational databases offer a standartised and wide-spread way of storing data in interrelated tables and intricate queries. A relational database can be opened
+by any engineer anywhere in the world and be accessed the same and manipulated exactly the same without extra training. And even though the data storage is
+single-formated (i.e. data is always stored in tables) - relational databases offer a lot of flexibility in terms of optimisation, security and efficiency.
+
+Non-relational or NoSQL databases are a bit different. While relational databases depend on SQL for writing queries - non-relational databases offer a wider
+variety of data storing options and dont require the user to use just SQL. Data can be stored in four different types of non-relational databases:
+document-oriented (as the name suggests - it is mostly used for storing documents as complex data structures), key-value stores (stores different keys where
+each key is associated with only a single value in a collection), wide-column stores (stores data in tables with rows and columns but the names and format
+of rows and columns can differ and vary) and graph stores (a graph database that uses graph structures for semantic queries and nodes, edges and properties to
+represent and store data). 
+
+So while relational databases are universal and managed by a single language, non-relational databases offer much more flexibility in terms of variety of data storage
+and the possibility of scaling up.

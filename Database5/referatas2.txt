@@ -1,0 +1,11 @@
+First look for obvious physical issues like power outages, natural disasters, broken servers or other trouble at
+the data centre. 
+If that's all well and good - I start looking in the connection department. I make sure that the correct ports
+are enabled and the correct routing is done so that the queries reach their destination properly.
+Next I check server settings and firewalls for any obscure issues.
+
+Next I cosult the various available logs to determine if the queries suffer an increased workload or a faulty/slow CPU.
+
+Lastly I examine the queries themselves to see if they are written correctly and efficiently. If I am using
+PostgreSQL I use the EXPLAIN command to see the the whole proccess of the query. I ensure proper indexing is used
+and if the structure of the tables and the database has not been altered.
