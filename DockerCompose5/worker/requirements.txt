@@ -1,0 +1,3 @@
+celery
+redis
+phycopg2-binary # postgre adapter

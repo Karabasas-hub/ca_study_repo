@@ -1,0 +1,55 @@
+services:
+  web:
+    image: nginx:latest
+    container_name: web_server
+    ports:
+      - "80:80"
+    volumes:
+      - ./web:/usr/share/nginx/html
+    networks:
+      - frontend
+      - backend
+
+  database:
+    image: mysql:5.7
+    container_name: mysql_db
+    environment:
+      MYSQL_DATABASE: MysqlDB
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+      MYSQL_ROOT_PASSWORD: rootpass
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - backend
+
+  cache:
+    image: redis:alpine
+    container_name: cahce
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - backend
+
+  worker:
+    build:
+      context: ./worker
+    container_name: worker
+    depends_on:
+      - database
+      - cache
+    networks:
+      - backend
+
+volumes:
+  db_data:
+  redis_data:
+networks:
+  frontend:
+  backend:
+
+
