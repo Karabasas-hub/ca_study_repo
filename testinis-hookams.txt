@@ -1,0 +1,2 @@
+failas commitui, kad pažiūrėti ar veikia hook'as
+
