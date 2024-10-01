@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 soda tea coffee
+=======
+soda tea coffee
+>>>>>>> brancas
