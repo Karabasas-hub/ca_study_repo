@@ -3,3 +3,5 @@ Bandomasis failas pratimams su git
 Pamodifikuotas palei trečią užduotį dabar
 
 Penkta užduotis. Geriausias muzikos žanras yra hardstyle
+
+Šešta užduotis. Pridedu tekstuko, kad rodytų kaip modifikuotą failą.
