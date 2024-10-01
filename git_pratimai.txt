@@ -1,1 +1,3 @@
 Bandomasis failas pratimams su git
+
+Pamodifikuotas palei trečią užduotį dabar
