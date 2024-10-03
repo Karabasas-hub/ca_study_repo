@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/product.schema.json",
+  "name": "Studentas",
+  "description": "Studento duomenys",
+  "type": "object"
+  "properties": {
+    "vardas": {
+      "description": "Studeto vardas",
+      "type": "string",
+      "uniqueItems": true
+    }
+    "amzius": {
+      "description": "Studento amzius",
+      "type": "interger"
+      "exclusiveMinimum": 5
+    }
+    "KuriojKlasej": {
+      "description": "Kurioje klaseje randasi studentas",
+      "type": "interger"
+      "exclusiveMinimum": 5,
+      "exclusiveMaximum": 20
+    }
+    "Dalykai": {
+      "description": "Kokius dalykus mokosi studentas"
+      "type": interger",
+      "uniqueItems": true
+    }
+  }
+  "required": [ "vardas", "amzius", "KuriojKlasej", "Dalykai" ]
+}

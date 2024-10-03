@@ -1,0 +1,9 @@
+mokinys:
+  vardas: "Aurelijus Krykšmantaitis"
+  amzius: 23
+  KuriojKlasej: 15
+  ArMokinasi: true
+  Dalykai:
+    - "matfizas"
+    - "kvantmechanika"
+    - "astro"

@@ -1,0 +1,19 @@
+mokinys1:
+  vardas: "Aurelijus Krykšmantaitis"
+  amzius: 23
+  KuriojKlasej: 15
+  ArMokinasi: true
+  Dalykai:
+    - &dalykas "matfizas"
+    - "kvantmechanika"
+    - "astro"
+
+mokinys2:
+  vardas: "Severinas Bokštkalys"
+  amzius: 54
+  KuriojKlasej: 12
+  ArMokinasi: true
+  Dalykai:
+    - *dalykas
+    - "Daile"
+    - "Solfedis"
