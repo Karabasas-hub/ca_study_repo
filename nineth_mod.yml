@@ -1,0 +1,16 @@
+employees:
+- firstName: John
+  lastName: Doe
+  skills:
+  - communication
+  - problem-solving
+  - teamwork
+- firstName: Anna
+  lastName: Smith
+  skills:
+  - programming
+- firstName: Emily
+  lastName: Clark
+  skills:
+  - management
+  - leadership
