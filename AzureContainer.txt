@@ -1,0 +1,26 @@
+Selected subscription and resource group
+
+Named the cotainer 
+Selected the region
+Selected the availibility zone
+SKU - standart
+
+Image source - quickstart images - nginx
+
+1vcpu, 1,5gib memory, 0gpus
+
+
+
+Networking
+
+Networking type - public
+
+DNS label - konteineris
+
+DNS name label scope reuse - Tenant
+
+Port 80
+
+Ports protocol TCP
+
+

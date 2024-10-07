@@ -1,0 +1,17 @@
+The Azure SQL Database and traditional SQL Server databases while simmilar in principle - differ quite a bit.
+
+Azure databases are cloud deployed and managed fully by microsoft. Its a lot more automated. While SQL servers are user-managed, offering more flexibility
+and customisation/configuration oppurtunities. The traditional SQL can be deployed on physical machines as well.
+
+Traditional SQL databases cost more to run, considering hardware requirements, software licences, maintenance and scaling costs. Azure on the other hand offers
+a pay-as-you-go model based on selected configuration of the database.
+
+The Azure SQL databases are scaled much more easily and can be scaled back down whenever needed with minimal cost as opposed to traditional SQL servers.
+
+Azure SQL provides high availability and automatic disaster recovery because of the built it georedundancy.
+
+The list goes on and on. 
+
+In principle - the Azure SQL databases provide easier management, easier configuration, deployment and scaling. While traditional SQL servers provide more versitile
+deployment and use options. In the end of the day though - it comes down to preference in my opinion. For saving time and money - the Azure SQL is certainly the
+way to go. On the other hand - for very specific circumstances and use-cases - it might be more beneficial to stick with the traditional SQL servers.

@@ -1,0 +1,35 @@
+VM'o  resource group - Ca-testings_group
+
+Regionas - Norway East
+
+Availability - avalability zone 1, self selected
+
+Trusted launch virtual machines
+
+Image - ubuntu server 24.04 LTS
+
+Size - standart B1s 1vcpu, 1gib memory
+
+Authentication ssh public key using a key generated in local machine console
+
+Alowed inbound ports - HTTPS
+
+
+
+Disks - default settings
+
+
+
+Networks
+
+Virtual network - Ca-testings-vnet
+
+Subnet - 10.1.0.0/24
+
+public IP Ca-testings-ip
+
+NSG advanced - edited - denied all inbound and outbound 8080 traffic
+
+No load balancer
+
+
