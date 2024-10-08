@@ -1,0 +1,23 @@
+Since Azure is a cloud-based platform - ensuring safe and secure usage is paramount.
+
+Setting up and using various authentication methods like Azure Active Directory and multi-factor authentication is
+common practice for safe usage of Azure. You can also implement conditional access policies to issue access based
+on location, device or risk level. Additionally - role-based access control ensures assigning the minimum possible
+permissions for each role following the least privillege principle.
+
+From the development side Azure provides a key vault for storing and managing secrets like passwords and API keys. 
+It is recommended to regularly rotate secrets periodically. Use the Azure-provided monitoring tools to follow when 
+passwords need to be changed or patches/updates installed.
+
+Use various encryption tools that Azure provdies to protect your data and resources. Also enforce TLS for in-transit encryption.
+
+Also make use of various options for securing networks, controlling traffic and creating/applying firewalls.
+
+From network side you should segment your network implementing network security groups to control inbound and outbound traffic.
+Apply various rules to VMs to keep them protected.
+Deploy a firewall to protect the entirety of your Vnet, enable DDoS protection.
+Make use of VPNs for safe connections between VMs or applications. Make endpoints private, utilise private IP addresses, 
+making sure the traffic never leaves Azure network.
+
+And as always - periodically make backups of your VMs, monitor your traffic, apply latest patches, keep all the software
+and tools updated and keep disaster training and methodology up-to-date to ensure the best use of Azure.
