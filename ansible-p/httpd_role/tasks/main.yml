@@ -1,0 +1,33 @@
+---
+- name: Install httpd (Apache)
+  apt:
+    name: apache2
+    state: present
+    update_cache: yes
+
+- name: paleidziam apache http servaka
+  command: /usr/sbin/apachectl start
+
+- name: ijungiam apache servisa
+  command: /usr/sbin/a2enmod rewrite
+
+- name: restartuojam apache http servisa
+  command: /usr/sbin/apachectl restart
+
+- name: kopijuojam custom konfiguracija
+  copy:
+    src: ~/ca_repo/ca_study_repo/ansible-p/httpd_role/files/custom_httpd.conf
+    dest: /etc/apache2/sites-available/custom_httpd.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: ijungiam custom configuracija
+  command: a2ensite custom_httpd.conf
+
+- name: restartinam apache, kad applyinti pakeitimus
+  service:
+    name: apache2
+    state: restarted
+
+# tasks file for httpd_role

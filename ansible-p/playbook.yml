@@ -1,0 +1,39 @@
+---
+- name: setupinam remote dokcer hosta
+  hosts: remote_docker
+  become: yes
+  tasks:
+    - name: ping the remote host for connectivity
+      ping:
+  roles:
+    - httpd_role
+- name: pirmas playbookas
+  hosts: remote_docker
+  become: yes #naudoti sudo kad butu elevated privileges
+  tasks:
+    - name: Sukuriam direktorija remote hoste (konteinery)
+      file:
+        path: /tmp/testinis
+        state: directory
+        mode: '0755'
+    - name: Sukuriam useri remote hoste
+      user:
+        name: ansible_user
+        state: present
+    - name: kopijuojam faila i remote hosta
+      copy:
+        src: ~/ca_repo/ca_study_repo/ansible-p/failas-kopijavimui.txt
+        dest: /tmp/remote_file.txt
+    - name: paleisti komanda esant remote hoste
+      command: echo "Hello, World" >> /tmp/hello.txt
+    - name: susirinkti faila is remote hosto
+      fetch:
+        src: /tmp/remote_file.txt
+        dest: ~/ca_repo/ca_study_repo/ansible-p/
+        flat: yes
+    - name: surinkti ir parodyti visus faktus
+      ansible.builtin.setup:
+        gather_subset: all
+    - name: surinkti ir parodyti tam tikrus faktus
+      debug:
+        var: ansible_distribution

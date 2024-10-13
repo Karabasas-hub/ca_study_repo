@@ -1,0 +1,27 @@
+---
+- hosts: nginx
+  become: yes
+  tasks:
+    - name: patikrinam ar sudo yra
+      apt:
+        name: sudo
+        state: present
+        update_cache: yes
+
+    - name: isitikinam, kad pitonas yra
+      apt:
+        name: python3
+        state: present
+        update_cache: yes
+
+    - name: patikrinam ar yra nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+
+    - name: uzvedam nginx
+      service:
+        name: nginx
+        state: started
+        enabled: yes

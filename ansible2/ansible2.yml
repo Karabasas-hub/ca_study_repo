@@ -1,0 +1,10 @@
+---
+- name: instaliuojam softa
+  hosts: ansible2
+  become: yes
+  tasks:
+    - name: install htop
+      apt:
+        name: htop
+        state: present
+
