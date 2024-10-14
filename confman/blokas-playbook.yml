@@ -1,0 +1,22 @@
+---
+- name: block, rescue, always
+  hosts: localhost
+  tasks:
+    - name: blok
+      block:
+        - name: sitas GALI feilint
+          command: /bin/false
+    
+        - name: sitas neis, jei pirmas feilins
+          debug:
+            msg: "sitas neissispausdins jei praeitas feilins"
+
+      rescue:
+        - name: gelbek
+          debug:
+            msg: "feilinom. darom pagalba"
+
+      always:
+        - name: sitas visada eina
+          debug:
+            msg: "sitas visada issispausdins, nesvarbu ka kiti dare"

@@ -1,0 +1,12 @@
+---
+- name: handlinam errorus
+  hosts: localhost
+  tasks:
+    - name: sitas feilins, bet ignoruosim
+      command: /bin/false
+      ignore_errors: yes
+
+    - name: tikrinam ar praeitas taskas feilino
+      debug:
+        msg: "praeitas taskas praignoruotas, vaziuojam toliau"
+

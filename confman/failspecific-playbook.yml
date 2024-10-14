@@ -1,0 +1,13 @@
+---
+- name: feilinam prie progos
+  hosts: localhost
+  tasks:
+    - name: feilinam jei salygos nepatenkinam
+      assert:
+        that:
+          - false
+        fail_msg: "salyga neteisinga, feilinam playbooka"
+
+    - name: sitas taskas nevaziuos jei assertas feilins
+      debug:
+        msg: "sita zinute nebus isspauzdinta"

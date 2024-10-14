@@ -1,0 +1,8 @@
+---
+- name: tsetuojam
+  hosts: local
+  tasks:
+    - name: paziurek ar naujausia versija curlo yra
+      apt:
+        name: curl
+        state: latest

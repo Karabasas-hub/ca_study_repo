@@ -1,0 +1,28 @@
+---
+- name: Tagging Example Playbook
+  hosts: localhost
+  tasks:
+    - name: Task 1 - This task will always run
+      debug:
+        msg: "Task 1: This task always runs."
+
+    - name: Task 2 - This task is tagged with 'important'
+      debug:
+        msg: "Task 2: This task is important."
+      tags: important
+
+    - name: Task 3 - This task is tagged with 'optional'
+      debug:
+        msg: "Task 3: This task is optional."
+      tags: optional
+
+    - name: Task 4 - This task is tagged with both 'important' and 'cleanup'
+      debug:
+        msg: "Task 4: This task is important and is for cleanup."
+      tags:
+        - important
+        - cleanup
+
+    - name: Task 5 - This task will not run with the default settings
+      debug:
+        msg: "Task 5: This task will not run unless specifically tagged."

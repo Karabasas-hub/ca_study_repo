@@ -1,0 +1,19 @@
+---
+- name: Testiniai ansible kintamieji
+  hosts: remote_host
+  vars:
+    playbook_var: "Tai yra is playbooko vidaus"
+  roles: 
+    - role_test
+  tasks:
+    - name: Spausdinam kintamuosius is inventoriaus ir is playbooko
+      debug: 
+        msg: "Inventorius: {{ inventory_var }}, Playbook: {{ playbook_var }}"
+
+    - name: Spausdinam kintamaji is roles
+      debug:
+        msg: "Role: {{ role_var }}"
+
+    - name: Spausdinam kintamaji is konsoles
+      debug:
+        msg: "Terminalo kintamasis: {{ cli_var }}"

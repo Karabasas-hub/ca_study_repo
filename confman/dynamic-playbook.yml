@@ -1,0 +1,8 @@
+---
+- name: play with dynamic inventory
+  hosts: all
+  tasks:
+    - name: print custom variable
+      debug:
+        msg: "custom variable is: {{ custom_var }}"
+
