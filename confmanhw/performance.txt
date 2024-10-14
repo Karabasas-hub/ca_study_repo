@@ -1,0 +1,14 @@
+To improve Ansible performance one can do one of the following:
+
+- Use forks
+By default Ansible run tasks on one host at a time. To increase productivity and decrease performance times - one can
+use forks to specify the amount of hosts Ansible runs on simultaneously. This way resources and time ar preserved.
+
+- Optimize inventory
+Instead of using static inventory that has to be manually kept up-to-date one can use dynamic inventory. Dynamic 
+inventory can be utilised by creating scripts to fetch certain items for your inventory. Additionally - one can 
+filter the incentory to includo only the neccessary hosts and in such a way reduce execution time.
+
+- Limit task execution using Tags
+This is especially useful for large and complex playbooks or when managing huge clusters of rmeote hosts. Using tags
+enables one to only run specific parts of the playbook which can save time when only minor changes need to be made or quick updates performed. Thus unnecessary execution of tasks that are not relevant is avoided.

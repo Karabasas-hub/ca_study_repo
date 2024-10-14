@@ -1,0 +1,35 @@
+Immutable infrastructure is a modern and different approach to managing IT systems. It emphasizes creation and 
+deployment of IT infrastructure components that can't be modified anfter their inception. Instead of patches and
+updates - changes are implimentes by replacing the entire component with an updated one. This concept if becoming
+more popular in recent years as it alligns very well with the principles of DevOps and contnuous delivery.
+
+Immutable infrastructure is beneficial due to its consistency ad predictability. Since components are replaced 
+rather than updated - the risk of configuration drift is significantly reduced. This allows teams to replicate
+production environments accurately in testing. It also is stable and reliable. Due to the nature of immutable 
+infrastructure - organizations can just roll back to an older version simply by deploying an older image.
+This increases system stability and reliability. Additionally - the need for intricate configuration management
+is eliminated. Instead - teams can focus on building and testing new images with required configurations embedded 
+in them. Lastly - using immutable infrastructure the attack surface is greatly reduced. Since fresh instances
+are deployed using trusted images - the risk of vulnerabilities caused by outdated software or unauthorised
+changes is reduced. 
+
+But as good as immutable infrastructure is - it faces some challanges as well. Adopting this approach often
+requires a significant operational shift within an organization. Teams struggle to adapt to this paradigm.
+Training and education are neccessary to create a proactive approach to infrastructure management. Managing stateful
+applications in an immutable infrastructure can be challenging because traditionally applications often rely
+on persistent storage and state retention instead of using strategies for managing state using external databases
+or storage services that can be accessed by new instances. 
+
+There are two great tools that help implement this approach - Docker and Kubernetes.
+Docker containers encapsulate applications and their dependencies in a single package ensuring consistency across
+different environments and machines. If changes are made - containers are rebuilt and redeployed. This model 
+alligns perfectly with the principles of immutable infrastructure.
+Kubernetes is an orchestration platform to manage containerised applications. It enhances the capabilities of
+this approach by automating deployment, scaling and management tasks. Kubernetes allows for seamless transitions
+between application versions while maintaining high availability. 
+
+In conclusion - immutable infrastructure represents a certain evolution in how organizations approach IT system
+management. Its offered benefits come with a set of challenges to overcome so a transition should be well 
+planned and considered. By leveraging tools like Docker and Kubernetes organizations can effectively implement
+immutable infrastructure, streamlining their IT operations. The adoption of this paradigm will drive further 
+innovation and transform the realm of IT infrastructure management.

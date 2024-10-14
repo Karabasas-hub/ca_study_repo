@@ -1,0 +1,30 @@
+Configuration management is a systematic approach to managing system's configurations, including hardware, 
+software and network settings. While this approach can significantly improve security by enforcing standart
+configurations and enabling quick remediation on vulnerabilities - it poses risks if managed poorly.
+
+Configuration management improves security by enforcing consistent configurations across systems. This eliminates
+the risk of misconfigurations which are a common attack vector for cybercriminals. This approach often includes
+features for compliance auditing, enabling users to constantly monitor systems against establish security standarts.
+Automated report highlight deviations from compliance standarts allowing teams to address security issues proactively.
+In the event of a security breach, though, CM tools allow for rapid remediation by enabling users to revert 
+systems to a secure baseline configurations. Lastly - CM enables version control of system configurations, providing
+a historical record of changes. This transparency allows for tracking and auditing changes, identiffying unauthorised
+modifications and impacts to the security of the system.
+
+While CM tools massively improve security - they pose some security risks as well. Improper setup or inadequate 
+understanding of the tools can lead to dangerous misconfigurations. THe tools often have extensive permissions as
+well that can be exploited by malicious insiders. If access controls are not properly implemented - critical 
+configurations can be altered leaving the system exposed. The effectiveness of configuration management relies on
+the integrity and security of the tools themselves as well. If the tool is compromised - an attacker could 
+manipulate configurations across systems. Lastly - it introduces complexity to IT operations. If well-defined
+processes and documentation are not in place - it can lead to confusion, errors and security vulnerabilities.
+
+Some best practices to use CM tools effectively would be to implement role-based access control to limit access
+to configuration management tools based on the principle of least privilege. Conduct regular audits of system 
+confgurations against compliance standarts and security benchmarks. Use encryption and secure channels to ensure
+sensitive data such as passwords and API keys are encrypted both at rest and in transit. Document all changes made 
+to the configurations along with the reasons for these changes. Such logs would create accoutnability and a clear
+history of made changes. Ensure that the CM tools themselves are regularly patched and updated and implement a 
+robust backup strategy. In the event of an incident, having backups allows for quick restoration of secure
+configurations.
+
