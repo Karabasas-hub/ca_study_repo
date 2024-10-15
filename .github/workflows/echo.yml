@@ -5,6 +5,7 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
 
@@ -15,8 +16,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Login to Docker
-      run: docker login -u {{ DOCKER_USER }} -p $secret.DOKCER_PASS
+      run: docker login -u ${{ env.DOCKER_USER }} -p ${{ secrets.DOKCER_PASS }}
     - name: Build Docker image
-      run: docker build . --file Dockerfile Karabasas/ca_repo:latest
+      run: docker build . --file Dockerfile karabasas/test:latest
     - name: Push Image
-      run: docker push Karabasas/ca_repo:latest
+      run: docker push karabasas/test:latest
