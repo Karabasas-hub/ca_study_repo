@@ -14,11 +14,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-
-  test:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Run the tests whyle it's building
-      run: sleep 5; echo "Running tests"; sleep 5
+    - name: Login to Docker
+      run: docker login -u {{ DOCKER_USER }} -p $secret.DOKCER_PASS
+    - name: Build Docker image
+      run: docker build . --file Dockerfile Karabasas/ca_repo:latest
+    - name: Push Image
+      run: docker push Karabasas/ca_repo:latest
