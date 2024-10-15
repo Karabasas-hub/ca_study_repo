@@ -17,7 +17,7 @@ jobs:
     - uses: actions/checkout@v4  
 
     - name: Login to Docker
-      run: docker login -u "karabasas" -p $secret.DOCKER_PASS
+      run: docker login -u "karabasas" -p ${{ secrets.DOCKER_PASS }}
     - name: Build Docker image
       run: docker build -t karabasas/test:latest . --Dockerfile
     - name: Push Image
