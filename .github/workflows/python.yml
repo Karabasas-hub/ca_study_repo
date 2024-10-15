@@ -1,2 +1,57 @@
 name: CI/CD Pipeline
 
+on:
+    push:
+        branches: [main]
+    pull_request: 
+        branches: [main]
+
+jobs:
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+            
+            - name: Set up python
+              uses: actions/setup-python@v2
+              with:
+                python-version: '3.8'
+            
+            - name: Run linter
+              run: pip install flake8 && flake8 app.py
+    
+    test:
+        runs-on: ubuntu-latest
+        needs: lint
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Set up Python
+              uses: actions/steup-python@v2
+              with:
+                python-version: '3.8'
+            
+            - name: Run tests
+              run: pytest test_app.py
+    
+    build:
+        runs-on: ubuntu-latest
+        needs: test
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Build app
+              run: docker build -t ci_cd:latest
+
+    deploy:
+        runs-on: ubuntu-latest
+        needs: build
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Deploy app
+              run: docker push ci_cd:latest
