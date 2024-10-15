@@ -14,9 +14,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Check Docker Username
-      run: echo "Docker Username: "${{ env.DOCKER_USER }}"   
+    - uses: actions/checkout@v4  
+    
     - name: Login to Docker
       run: docker login -u {{ karabasas }} -p $secret.DOCKER_PASS
     - name: Build Docker image
