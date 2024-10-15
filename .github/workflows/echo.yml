@@ -20,7 +20,7 @@ jobs:
     - name: Login to Docker
       run: docker login -u {{ karabasas }} -p $secret.DOCKER_PASS
     - name: Build Docker image
-      run: docker build . -t karabasas/test:latest --file Dockerfile 
+      run: echo "${{ secrets.DOCKER_PASS }}" | docker login -u "karabasas" --password-stdin
     - name: Push Image
       run: docker push karabasas/test:latest
 
