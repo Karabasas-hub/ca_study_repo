@@ -10,13 +10,13 @@ on:
 jobs:
 
   build:
-    
+
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
     - name: Login to Docker
-      run: docker login -u ${{ env.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
+      run: echo "${{ secrets.DOCKER_PASS }}" | docker login -u "${{ secrets.DOCKER_USER }}" --password-stdin
     - name: Build Docker image
       run: docker build . --file Dockerfile -t karabasas/test:latest
     - name: Push Image
