@@ -19,7 +19,7 @@ jobs:
     - name: Login to Docker
       run: docker login -u karabasas -p ${{ secrets.DOCKER_PASS }}
     - name: Build Docker image
-      run: docker build -t karabasas/test:latest . --Dockerfile
+      run: docker build -t karabasas/test:latest . --file Dockerfile
     - name: Push Image
       run: docker push karabasas/test:latest
 
