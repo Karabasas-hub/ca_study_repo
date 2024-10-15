@@ -18,7 +18,7 @@ jobs:
     - name: Check Docker Username
       run: echo "Docker Username: "${{ env.DOCKER_USER }}"   
     - name: Login to Docker
-      run: echo "${{ secrets.DOCKER_PASS }}" | docker login -u "karabasas" --password-stdin
+      run: docker login -u {{ karabasas }} -p $secret.DOCKER_PASS
     - name: Build Docker image
       run: docker build . -t karabasas/test:latest --file Dockerfile 
     - name: Push Image
