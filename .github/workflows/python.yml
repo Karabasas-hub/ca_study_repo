@@ -29,7 +29,7 @@ jobs:
               uses: actions/checkout@v2
 
             - name: Set up Python
-              uses: actions/steup-python@v2
+              uses: actions/steup-python@v3
               with:
                 python-version: '3.8'
             
