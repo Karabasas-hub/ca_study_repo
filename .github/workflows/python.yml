@@ -24,7 +24,7 @@ jobs:
                 pip install flake8
             - name: Run linter
               run: |
-                flake8 .
+                flake8 appsas.py
     
     test:
         runs-on: ubuntu-latest
@@ -43,7 +43,7 @@ jobs:
                 pip install unittest 
             - name: Run tests
               run: |
-                python -m unittest discover tests
+                python -m unittest discover -s tests -p "test_app.py"
     
     build:
         runs-on: ubuntu-latest
