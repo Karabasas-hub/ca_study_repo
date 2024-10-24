@@ -1,11 +1,11 @@
-module test {
-    source = "./test"
+module "test" {
+  source = "./test"
 }
 
-module stage {
-    source = "./stage"
+module "stage" {
+  source = "./stage"
 }
 
-module prod {
-    source = "./stage"
+module "prod" {
+  source = "./prod"
 }

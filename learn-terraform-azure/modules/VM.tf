@@ -29,7 +29,7 @@ resource "azurerm_network_interface" "example" {
   }
 }
 
-resource "azurerm_virtual_machine" "example" {
+resource "azurerm_linux_virtual_machine" "example" {
   name                = var.vm_name
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
