@@ -3,14 +3,29 @@ variable region {
   default = "northeurope"
 }
 
-variable name {
+variable resource_group_name {
   type = string
+  default = ""
 }
 
-var.resource_group_name
-var.virtual_network_name
-var.subnet_name
-var.vm_name
-var.machine_size
+variable virtual_network_name {
+  type = string
+  default = ""
+}
+
+variable subnet_name {
+  type = string
+  default = ""
+}
+
+variable vm_name {
+  type = string
+  default = ""
+}
+
+variable machine_size {
+  type = string
+  default = ""
+}
 
 
