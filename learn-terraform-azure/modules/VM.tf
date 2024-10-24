@@ -1,40 +1,26 @@
-resource "azurerm_resource_group" "rg" {
+resource "azurerm_resource_group" "example" {
   name     = var.resource_group_name
   location = var.region
-}
-
-resource "azurerm_storage_account" "example" {
-  name                     = azurerm_storage_account.example.name
-  resource_group_name      = azurerm_resource_group.rg.name
-  location                 = azurerm_resource_group.rg.location
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
-}
-
-resource "azurerm_storage_container" "example" {
-  name                  = azurerm_storage_container.example.name 
-  storage_account_name  = azurerm_storage_account.example.name
-  container_access_type = "private"
 }
 
 resource "azurerm_virtual_network" "example" {
   name                = var.virtual_network_name
   address_space       = ["10.0.0.0/16"]
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
 }
 
 resource "azurerm_subnet" "example" {
   name                 = var.subnet_name
-  resource_group_name  = azurerm_resource_group.rg.name
+  resource_group_name  = azurerm_resource_group.example.name
   virtual_network_name = azurerm_virtual_network.example.name
   address_prefixes     = ["10.0.2.0/24"]
 }
 
 resource "azurerm_network_interface" "example" {
-  name                = azurerm_network_interface.example.name
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
+  name                = "example-nic"
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
 
   ip_configuration {
     name                          = "internal"
@@ -45,8 +31,8 @@ resource "azurerm_network_interface" "example" {
 
 resource "azurerm_virtual_machine" "example" {
   name                = var.vm_name
-  resource_group_name = azurerm_resource_group.rg.name
-  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.example.name
+  location            = azurerm_resource_group.example.location
   size                = var.machine_size
   admin_username      = "adminuser"
   network_interface_ids = [
@@ -69,7 +55,5 @@ resource "azurerm_virtual_machine" "example" {
     sku       = "22_04-lts"
     version   = "latest"
   }
-  priority = "Spot"
-  eviction_policy = "Deallocate"
 }
 

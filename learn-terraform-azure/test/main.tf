@@ -3,7 +3,7 @@ variable environment {
     default = "test"
 }
 
-module test{
+module test {
     source               = "../modules"
     region               = "northeurope"
     resource_group_name  = "${var.environment}-rsgp"
