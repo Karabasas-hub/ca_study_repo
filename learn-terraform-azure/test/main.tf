@@ -3,12 +3,12 @@ variable environment {
     default = "test"
 }
 
-module {
-    source = "../modules/VM"
+module test {
+    source = "./"
     region = "northeurope"
-    resource_group_name = "test_rsgp"
-    virtual_network_name = "test_vpc"
-    subnet_name = "testsubnet"
+    resource_group_name = "${var.environment}-rsgp"
+    virtual_network_name = "${var.environment}-vpc"
+    subnet_name = "${var.environment}-subnet"
     vm_name = "${var.environment}-catest001"
     machine_size = "Standard_B1s"
 }
