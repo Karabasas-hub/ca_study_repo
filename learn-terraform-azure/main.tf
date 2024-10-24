@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "rg" {
   name     = "teralearn"
-  location = "northeurope"
+  location = var.region
 }
 
 resource "azurerm_storage_account" "example" {
@@ -43,8 +43,8 @@ resource "azurerm_network_interface" "example" {
   }
 }
 
-resource "azurerm_linux_virtual_machine" "example" {
-  name                = "example-machine"
+resource "azurerm_virtual_machine" "example" {
+  name                = var.name
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   size                = "Standard_F2"
@@ -72,3 +72,4 @@ resource "azurerm_linux_virtual_machine" "example" {
   priority = "Spot"
   eviction_policy = "Deallocate"
 }
+
