@@ -29,3 +29,6 @@ rcterraform.rc
 
 # Ignore backup files created by the Terraform CLI
 *.backup
+*.plan
+.terraform
+.terraform.tfstate*
