@@ -8,6 +8,10 @@ variable region {
   type        = string
   default     = "polandcentral"
   description = "Region for the infrastructure"
+  validation {
+    condition = contains(["northeurope", "norwayeast", "polandcentral"], var.region)
+    error_message = "Value can only contain northeurope, norwayeast and polandcentral. We dont like westerners"
+  }
 }
 
 variable virtual_network_name {
