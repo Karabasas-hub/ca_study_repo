@@ -1,0 +1,7 @@
+resource_group_name = "calectures"
+region = "norwayeast"
+virtual_network_name = "calectures"
+subnet_name = "calectures"
+vm_name = "calectures"
+machine_size = "Standard_B1ls"
+public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCldp2y6+rkqlotWN/VD+W4JH/XVSNJhTN4xr0eHGve5i/GFkqwQ6iI29ADqAV4eb3fin6wcfwFT7qe/ulDk0TsgcWt7l/Arb/vil8wya81U3je67L+y7gJEqp3DgbGH8sScjdphCc7u4nzqpwPCks4fdOX4Ium2HZMFf57yNALo2zI00/Tf3Errf0SjzxNVSyPyODYquGQzBZsZv+YP4lzI/iL2/v2Y6UQ4laGIaLk76oHZdBBkN9uCg+IhsZ1DdBdXM29PhYLVluyUbVLCnUwNO+iIM6pyPDmMhM6CcWrqnetAXMgr2BJVXwdH09H9tQyZeatsAvmBnO0fvxORYiV karabasas@DESKTOP-PJIGV5M"
