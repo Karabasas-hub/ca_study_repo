@@ -1,17 +1,17 @@
 resource "azurerm_resource_group" "calecture27" {
-  name     = "${var.resource_group_name}${terraform.workspace}"
+  name     = "${var.resource_group_name}-${terraform.workspace}"
   location = var.region
 }
 
 resource "azurerm_virtual_network" "calecture27" {
-  name                = "${var.virtual_network_name}${terraform.workspace}"
+  name                = "${var.virtual_network_name}-${terraform.workspace}"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.calecture27.location
   resource_group_name = azurerm_resource_group.calecture27.name
 }
 
 resource "azurerm_subnet" "calecture27" {
-  name                 = "${var.subnet_name}${terraform.workspace}"
+  name                 = "${var.subnet_name}-${terraform.workspace}"
   resource_group_name  = azurerm_resource_group.calecture27.name
   virtual_network_name = azurerm_virtual_network.calecture27.name
   address_prefixes     = ["10.0.2.0/24"]
@@ -41,7 +41,7 @@ resource "azurerm_linux_virtual_machine" "calecture27" {
 
   admin_ssh_key {
     username   = "adminuser"
-    public_key = file("~/.ssh/id_rsa.pub")
+    public_key = var.public_key
   }
 
   os_disk {
