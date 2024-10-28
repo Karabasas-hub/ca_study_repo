@@ -3,7 +3,7 @@ name: Terraform plan / apply
 on:
     push:
         branches: [ "main" ]
-        
+
     workflow_dispatch:
         inputs:
             environment:
@@ -56,3 +56,4 @@ jobs:
             else
                 terraform workspace select ${{ github.event.inputs.environment }}
                 terraform apply --auto-approve "${{ github.event.inputs.environment }}.plan"
+            fi
