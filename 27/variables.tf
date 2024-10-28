@@ -41,3 +41,9 @@ variable machine_size {
     error_message = "Value can contain only Standard_B1ls,Standard_B1ms,Standard_B1s"
   }
 }
+
+variable public_key {
+  type        = string
+  default     = ""
+  description = "the ssh key to setup vm"
+}
