@@ -31,3 +31,6 @@ rcterraform.rc
 *.plan
 .terraform
 .terraform.tfstate*
+
+.My2KeyPair.pem
+.MyKeyPair.pems
