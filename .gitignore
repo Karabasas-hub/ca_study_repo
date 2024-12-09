@@ -33,4 +33,4 @@ rcterraform.rc
 .terraform.tfstate*
 
 .My2KeyPair.pem
-.MyKeyPair.pems
+.MyKeyPair.pem
