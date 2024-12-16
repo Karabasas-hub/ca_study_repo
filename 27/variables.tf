@@ -8,10 +8,6 @@ variable region {
   type        = string
   default     = "polandcentral"
   description = "Region for the infrastructure"
-  validation {
-    condition = contains(["northeurope", "norwayeast", "polandcentral"], var.region)
-    error_message = "Value can only contain northeurope, norwayeast and polandcentral. We dont like westerners"
-  }
 }
 
 variable virtual_network_name {
@@ -40,10 +36,4 @@ variable machine_size {
     condition = contains(["Standard_B1ls","Standard_B1ms","Standard_B1s"], var.machine_size)
     error_message = "Value can contain only Standard_B1ls,Standard_B1ms,Standard_B1s"
   }
-}
-
-variable public_key {
-  type        = string
-  default     = ""
-  description = "the ssh key to setup vm"
 }
