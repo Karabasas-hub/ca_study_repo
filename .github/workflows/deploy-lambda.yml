@@ -1,0 +1,39 @@
+name: Deploy Lambda Function
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    deploy:
+        name: Deploy Lambda
+        runs-on: ubuntu-latest
+
+        permissions:
+            id-token: write
+            contents: read
+
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4
+
+            - name: Configure AWS credentials
+              uses: aws-actions/configure-aws-credentials@v3
+              with:
+                role-to-assume: arn:aws:iam::615299752186:role/github-actions-role
+                aws-region: eu-central-1
+
+            - name: Setup Terraform
+              uses: hashicorp/setup-terraform@v2
+              with:
+                terraform_version: "1.8.0"
+            
+            - name: Terraform init
+              run: terraform init
+
+            - name: Terraform validate
+              run: terraform validate
+
+            - name: Terraform apply
+              run: terraform apply -autoapprove
