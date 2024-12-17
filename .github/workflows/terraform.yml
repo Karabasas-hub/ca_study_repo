@@ -2,7 +2,7 @@ name: Terraform plan / apply
 
 on:
     push:
-        branches: [ "main" ]
+       # branches: [ "main" ]
 
     workflow_dispatch:
         inputs:
