@@ -29,11 +29,9 @@ jobs:
               with:
                 terraform_version: "1.8.0"
             
-            - name: Terraform init
-              run: terraform init
-
-            - name: Terraform validate
-              run: terraform validate
-
-            - name: Terraform apply
-              run: terraform apply -auto-approve
+            - name: Run the Terraform script
+              working-directory: ~/ca_repo/ca_study_repo/47-lambda-terraform
+              run: |
+                terraform init
+                terraform apply -auto-approve
+              
