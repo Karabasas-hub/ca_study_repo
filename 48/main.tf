@@ -104,7 +104,7 @@ resource "aws_instance" "virtual_machine" {
 }
 
 output "public_ips" {
-    value = aws_instance.vm[*].public_ip
+    value = aws_instance.virtual_machine[*].public_ip
     sensitive = true
     description = "Sukurtų vm'ų public IP"
 }
