@@ -34,10 +34,3 @@ rcterraform.rc
 
 .My2KeyPair.pem
 .MyKeyPair.pem
-
-.github/workflows/deploy-lambda.yml
-.github/workflows/docker-image.yml
-.github/workflows/echo.yml
-.github/workflows/python.yml
-.github/workflows/terraform-destroy.yml
-.github/workflows/terraform.yml

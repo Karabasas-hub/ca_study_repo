@@ -1,7 +1,7 @@
 name: Deploy Lambda Function
 on:
-#  push:
-#    branches:
+  push:
+    branches: [ "dev" ]
 
 jobs:
     deploy:
