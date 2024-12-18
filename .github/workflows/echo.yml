@@ -5,7 +5,7 @@ on:
   #  branches: [ "feature-branch" ]
   # pull_request:
   #  branches: [ "feature-branch" ]
-  workflow_dispatch:
+#  workflow_dispatch:
 
 jobs:
 

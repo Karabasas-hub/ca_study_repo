@@ -1,16 +1,16 @@
 name: Terraform destroy
 
 on:
-  workflow_dispatch: 
-    inputs:
-      environment:
-        type: choice
-        description: Envornment
-        options: 
-        - dev
-        - stage
-        - prod
-        default: test
+ # workflow_dispatch: 
+  #  inputs:
+  #    environment:
+   #     type: choice
+    #    description: Envornment
+     #   options: 
+      #  - dev
+       # - stage
+        #- prod
+        #default: test
   
 
 jobs:

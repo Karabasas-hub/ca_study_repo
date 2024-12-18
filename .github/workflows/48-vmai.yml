@@ -1,0 +1,60 @@
+name: Terraform 48 VM deploy and checkov 
+
+on:
+    workflow_dispatch:
+        inputs:
+            environment:
+                type: choice
+                description: Environment
+                options:
+                    - dev
+                    - stage
+                    - prod
+                default: test      
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Test with Checkov
+              id: checkov
+              uses: bridgecrewio/checkov-action@master
+              with:
+                directory: 48
+                framework: terraform
+
+
+    terraform:
+        name: Terraform plan and apply
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4
+        
+            - name: Setup Terraform
+              uses: hashicorp/setup-terraform@v2
+              with:
+                terraform_version: 1.5.6
+            
+            - name: Terraform init
+              run: terrform init
+
+            - name: Terraform Validate
+              run: terraform validate
+
+            - name: Terraform Plan su variables'ais
+              run: terraform plan -var-file=${{ github.event.inputs.environment }}.tfvars -auto-approve
+
+            - name: Terraform Apply su variables'ais
+              env:
+                AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                AWS_SECRET_ACCESS_KEy: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+              run: terraform apply -auto-approve -var-file=${{ github.event.inputs.environment }}.tfvars -auto-approve
+
+            - name: Output the IPs
+              run: terraform output -json public_ips
+
