@@ -30,6 +30,9 @@ jobs:
     terraform:
         name: Terraform plan and apply
         runs-on: ubuntu-latest
+        defaults:
+            run:
+              working-directory: ./48
 
         steps:
             - name: Checkout Code
