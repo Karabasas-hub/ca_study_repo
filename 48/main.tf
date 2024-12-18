@@ -88,7 +88,7 @@ resource "aws_key_pair" "key" {
 }
 
 #EC2 vm'ai
-resource "aws_instance" "vm" {
+resource "aws_instance" "virtual_machine" {
     count           = 3
     ami             = "ami-002738de72d8deab5" 
     instance_type   = var.machine_type
