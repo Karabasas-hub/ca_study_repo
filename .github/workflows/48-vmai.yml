@@ -47,7 +47,7 @@ jobs:
               run: terraform validate
 
             - name: Terraform Plan su variables'ais
-              run: terraform plan -var-file=48/${{ github.event.inputs.environment }}.tfvars
+              run: terraform plan -var-file=${{ github.event.inputs.environment }}.tfvars
 
             - name: Terraform Apply su variables'ais
               env:
