@@ -83,8 +83,8 @@ resource "aws_security_group" "ssh_http" {
 
 #SSH key pair
 resource "aws_key_pair" "key" {
-    key_name = var.key_name
-    public_key  file(var.public_key_path)
+    key_name   = var.key_name
+    public_key = file(var.public_key_path)
 }
 
 #EC2 vm'ai
