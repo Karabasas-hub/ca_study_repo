@@ -1,3 +1,4 @@
+
 module "vpc" {
     source  = "terraform-aws-modules/vpc/aws"
     version = "4.0.2"
@@ -23,7 +24,7 @@ resource "aws_internet_gateway" "igw" {
 
 # Route table for subnets
 resource "aws_route_table" "public" {
-    vpc_id = module.vpc_id
+    vpc_id = module.vpc.vpc_id
 
     route {
         cidr_block = "0.0.0.0/0"
@@ -37,14 +38,14 @@ resource "aws_route_table" "public" {
 
 # Route tables surišam su subnetais
 resource "aws_route_table_association" "public_assoc" {
-    count          = length(aws_subnet.public)
+    count          = length(module.vpc.public_subnets)
     subnet_id      = module.vpc.public_subnets[count.index]
     route_table_id = aws_route_table.public.id
 }
 
 # Security group
 resource "aws_security_group" "ssh_http" {
-    vpc_id = module.vpc_id
+    vpc_id = module.vpc.vpc_id
 
     ingress {
         from_port   = 22
@@ -78,16 +79,37 @@ resource "aws_key_pair" "key" {
     public_key = file(var.public_key_path)
 }
 
-#EC2 vm'ai
-resource "aws_instance" "virtual_machine" {
-    count                  = 3
-    ami                    = "ami-0fb820135757d28fd" 
+module "ec2_instances" {
+    for_each = {
+        "instance1" = module.vpc.public_subnets[0]
+        "instance2" = module.vpc.public_subnets[1]
+        "instance3" = module.vpc.public_subnets[2]
+    }
+
+    source                 = "./modules"
+    depends_on             = [module.vpc]
+    ec2_count                  = 1
+    ami                    = "ami-002738de72d8deab5" 
     instance_type          = var.machine_type
     key_name               = aws_key_pair.key.key_name
     subnet_id              = module.vpc.public_subnets[count.index]
-    vpc_security_group_ids = [aws_security_group.ssh_http.id]
-
-    tags = {
-        Name = "${var.environment}-vm-${count.index + 1}"
-    }
+    security_group_ids     = [aws_security_group.ssh_http.id]
+    environment            = var.environment
 }
+
+
+#EC2 vm'ai
+#module "github_ec2_instance" {
+#    source = "github.com/terraform-aws-modules/terraform-aws-ec2-instance"
+#    count                  = 3
+#    ami                    = "ami-002738de72d8deab5" 
+#    instance_type          = var.machine_type
+#    key_name               = aws_key_pair.key.key_name
+#    subnet_id              = module.vpc.public_subnets[count.index]
+#    vpc_security_group_ids = [aws_security_group.ssh_http.id]
+#
+#    tags = {
+#        Name = "${var.environment}-vm-${count.index + 1}"
+#    }
+#}
+
