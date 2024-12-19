@@ -88,11 +88,11 @@ module "ec2_instances" {
 
     source                 = "./modules"
     depends_on             = [module.vpc]
-    ec2_count                  = 1
+    ec2_count              = 1
     ami                    = "ami-002738de72d8deab5" 
     instance_type          = var.machine_type
     key_name               = aws_key_pair.key.key_name
-    subnet_id              = module.vpc.public_subnets[count.index]
+    subnet_id              = each.value
     security_group_ids     = [aws_security_group.ssh_http.id]
     environment            = var.environment
 }
