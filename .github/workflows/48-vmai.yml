@@ -1,16 +1,8 @@
 name: Terraform 48 VM deploy and checkov 
 
 on:
-    workflow_dispatch:
-        inputs:
-            environment:
-                type: choice
-                description: Environment
-                options:
-                    - dev
-                    - stage
-                    - prod
-                default: test      
+    push:
+      branches: [ "dev" ]   
 
 jobs:
     build:
