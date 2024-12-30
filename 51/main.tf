@@ -20,9 +20,9 @@ resource "aws_vpc" "main" {
 
 # Sukuriam subnetą
 resource "aws_subnet" "main" {
-    count = length(var.avz)
     vpc_id                  = aws_vpc.main.id
     cidr_block              = "10.0.0.0/24"
+    availability_zone       = "eu-central-1a"
     map_public_ip_on_launch = true
     tags                    = merge(local.tags, { Name = "subnet-${local.name_suffix}"})
 }
@@ -80,25 +80,6 @@ resource "aws_security_group" "instance_sg" {
 
     tags   = merge(local.tags, { Name = "sg-${local.name_suffix}"})
 
-}
-
-# RDS instace'as duombazei
-resource "aws_db_subnet_group" "main" {
-    name              = "db-subnet-${local.name_suffix}"
-    subnet_ids        = [aws_subnet.main.id]
-    tags              = merge(local.tags, { Name = "sg-${local.name_suffix}"})
-}
-
-resource "aws_db_instance" "database" {
-    allocated_storage      = 5
-    engine                 = "mysql"
-    instance_class         = "db.t2.micro"
-    username               = var.db_username
-    password               = var.db_password
-    vpc_security_group_ids = [aws_security_group.instance_sg.id]
-    db_subnet_group_name   = aws_db_subnet_group.main.name
-    skip_final_snapshot    = true
-    tags                   = merge(local.tags, { Name = "db-${local.name_suffix}"})
 }
 
 resource "aws_instance" "app_server" {
