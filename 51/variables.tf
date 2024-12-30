@@ -27,3 +27,7 @@ variable "resource_tags" {
     type        = map(string)
     default = {}
 }
+
+variable "avz" {
+    default = ["eu-central-1a", "eu-central-1b"]
+}

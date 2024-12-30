@@ -20,10 +20,10 @@ resource "aws_vpc" "main" {
 
 # Sukuriam subnetą
 resource "aws_subnet" "main" {
+    count = length(var.avz)
     vpc_id                  = aws_vpc.main.id
     cidr_block              = "10.0.0.0/24"
     map_public_ip_on_launch = true
-    availability_zone       = data.aws_availability_zones.available.names[0]
     tags                    = merge(local.tags, { Name = "subnet-${local.name_suffix}"})
 }
 
@@ -36,13 +36,13 @@ resource "aws_internet_gateway" "main" {
 # Sukuriam route table
 resource "aws_route_table" "main" {
     vpc_id = aws_vpc.main.id
-    routes = [
-        {
-            cidr_block = "0.0.0.0/0"
-            gateway_id = aws_internet_gateway.main.id
-        }
-    ]
     tags   = merge(local.tags, { Name = "rt-${local.name_suffix}"})
+}
+
+resource "aws_route" "internet_access" {
+    route_table_id = aws_route_table.main.id
+    destination_cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.main.id
 }
 
 # Surišam route table su subnetu
@@ -65,7 +65,7 @@ resource "aws_security_group" "instance_sg" {
     }
 
     ingress {
-        form_port   = 80
+        from_port   = 80
         to_port     = 80
         protocol    = "tcp" 
         cidr_blocks = ["0.0.0.0/0"]
@@ -82,29 +82,46 @@ resource "aws_security_group" "instance_sg" {
 
 }
 
+# RDS instace'as duombazei
+resource "aws_db_subnet_group" "main" {
+    name              = "db-subnet-${local.name_suffix}"
+    subnet_ids        = [aws_subnet.main.id]
+    tags              = merge(local.tags, { Name = "sg-${local.name_suffix}"})
+}
+
 resource "aws_db_instance" "database" {
-    allocated_storage   = 5
-    engine              = "mysql"
-    instance_class      = "db.t2.micro"
-    username            = var.db_username
-    password            = var.db_password
+    allocated_storage      = 5
+    engine                 = "mysql"
+    instance_class         = "db.t2.micro"
+    username               = var.db_username
+    password               = var.db_password
     vpc_security_group_ids = [aws_security_group.instance_sg.id]
-    skip_final_snapshot = true
-    tags = merge(local.tags, { Name = "db-${local.name_suffix}"})
+    db_subnet_group_name   = aws_db_subnet_group.main.name
+    skip_final_snapshot    = true
+    tags                   = merge(local.tags, { Name = "db-${local.name_suffix}"})
 }
 
 resource "aws_instance" "app_server" {
-    ami           = "ami-0d118c6e63bcb554e"
-    instance_type = "t2.micro"
-    subnet_id = aws_subnet.main.id
-    security_groups = [aws_security_group.instance_sg.name]
-    tags = "${merge(local.tags, {Name="app-server-${local.name_suffix}"})}"
+    ami                    = "ami-0d118c6e63bcb554e"
+    instance_type          = "t2.micro"
+    subnet_id              = aws_subnet.main.id
+    vpc_security_group_ids = [aws_security_group.instance_sg.id]
+    tags                   = "${merge(local.tags, {Name="app-server-${local.name_suffix}"})}"
 }
 
 resource "aws_instance" "backend_server" {
-    ami           = "ami-0d118c6e63bcb554e"
-    instance_type = "t2.micro"
-    subnet_id = aws_subnet.main.id
-    security_groups = [aws_security_group.instance_sg.name]
-    tags = "${merge(local.tags, {Name="backend-server-${local.name_suffix}"})}"
+    ami                    = "ami-0d118c6e63bcb554e"
+    instance_type          = "t2.micro"
+    subnet_id              = aws_subnet.main.id
+    vpc_security_group_ids = [aws_security_group.instance_sg.id]
+    tags                   = "${merge(local.tags, {Name="backend-server-${local.name_suffix}"})}"
 }
+
+############################################################
+# Dalis iš 51 paskaitos practice time
+############################################################
+
+resource "aws_eip" "ip" {
+    instance = aws_instance.app_server.id
+}
+
