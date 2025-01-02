@@ -31,3 +31,9 @@ variable "resource_tags" {
 variable "avz" {
     default = ["eu-central-1a", "eu-central-1b"]
 }
+
+variable "instance_type" {
+    description = "EC2 instance type"
+    type = string
+    default = "t2.micro"
+}
