@@ -1,24 +1,24 @@
 # terraform {
 #     required_providers {
 #         aws = {
-#             source = "hashicorp/aws"
+#             source  = "hashicorp/aws"
 #             version = "~>5.38"
 #         }
 #     }
 
 #     required_version = ">= 1.2.0"
 #     backend "s3" {
-#         bucket = "kibiras-test"
-#         key = "terraform.tfstate"
-#         region = "eu-central-1"
-#         encrypt = true
+#         bucket         = "kibiras-test"
+#         key            = "terraform.tfstate"
+#         region         = "eu-central-1"
+#         encrypt        = true
 #         dynamodb_table = "lenta-test"
 #     }
 # }
 
 locals {
     required_tags = {
-        project = var.project_name,
+        project     = var.project_name,
         environment = var.environment
     }
     tags = merge(var.resource_tags, local.required_tags)
@@ -58,9 +58,9 @@ resource "aws_route_table" "main" {
 }
 
 resource "aws_route" "internet_access" {
-    route_table_id = aws_route_table.main.id
+    route_table_id         = aws_route_table.main.id
     destination_cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.main.id
+    gateway_id             = aws_internet_gateway.main.id
 }
 
 # Surišam route table su subnetu

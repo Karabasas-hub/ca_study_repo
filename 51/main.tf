@@ -81,7 +81,9 @@ resource "aws_security_group" "instance_sg" {
     tags   = merge(local.tags, { Name = "sg-${local.name_suffix}"})
 
 }
-
+# Ateičiai - jei reik ec2 instance'o - pasidarai vpc, pasidarai subnetą, pasidarai IGW, route table, route table association, kad 
+# surištum route table ir subnetą, routą pasidarai, kad uždėtum igw and route table ir galiausiai security grupes su ingress
+# taisyklėmis 80 ir 22 portui (http ir ssh) ir egress taisyklę, kad nesiunti traffico lauk, tik klausaisi ties tais dviem portais
 resource "aws_instance" "app_server" {
     ami                    = "ami-0d118c6e63bcb554e"
     instance_type          = "t2.micro"
