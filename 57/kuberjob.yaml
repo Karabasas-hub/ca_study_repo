@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ping
+spec:
+  template:
+    spec:
+      containers:
+        - image: busybox:latest
+          command: ["ping", "-c2", "google.com"]
+          imagePullPolicy: Always
+          name: busybox
+      restartPolicy: Never

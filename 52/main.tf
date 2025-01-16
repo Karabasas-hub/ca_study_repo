@@ -1,31 +1,19 @@
-# terraform {
-#     required_providers {
-#         aws = {
-#             source  = "hashicorp/aws"
-#             version = "~>5.38"
-#         }
-#     }
-
-#     required_version = ">= 1.2.0"
-#     backend "s3" {
-#         bucket         = "kibiras-test"
-#         key            = "terraform.tfstate"
-#         region         = "eu-central-1"
-#         encrypt        = true
-#         dynamodb_table = "lenta-test"
-#     }
-# }
-
-locals {
-    required_tags = {
-        project     = var.project_name,
-        environment = var.environment
+terraform {
+    required_providers {
+        aws = {
+            source  = "hashicorp/aws"
+            version = "~>5.38"
+        }
     }
-    tags = merge(var.resource_tags, local.required_tags)
-}
 
-locals {
-    name_suffix = "${var.project_name}-${var.environment}"
+    required_version = ">= 1.2.0"
+    backend "s3" {
+        bucket         = "kibiras-test"
+        key            = "terraform.tfstate"
+        region         = "eu-central-1"
+        encrypt        = true
+        dynamodb_table = "lenta-test"
+    }
 }
 
 # Susikuriam VPC (nežinau kaip viskas veikė 50-am tf faile..)
@@ -33,7 +21,6 @@ resource "aws_vpc" "main" {
     cidr_block           = "10.0.0.0/16"
     enable_dns_hostnames = true
     enable_dns_support   = true
-    tags                 = merge(local.tags, { Name = "vpc-${local.name_suffix}"})
 }
 
 # Sukuriam subnetą
@@ -42,19 +29,16 @@ resource "aws_subnet" "main" {
     cidr_block              = "10.0.0.0/24"
     availability_zone       = "eu-central-1a"
     map_public_ip_on_launch = true
-    tags                    = merge(local.tags, { Name = "subnet-${local.name_suffix}"})
 }
 
 # Sukuriam IGW
 resource "aws_internet_gateway" "main" {
     vpc_id = aws_vpc.main.id
-    tags   = merge(local.tags, { Name = "igw-${local.name_suffix}"})
 }
 
 # Sukuriam route table
 resource "aws_route_table" "main" {
     vpc_id = aws_vpc.main.id
-    tags   = merge(local.tags, { Name = "rt-${local.name_suffix}"})
 }
 
 resource "aws_route" "internet_access" {
@@ -95,9 +79,6 @@ resource "aws_security_group" "instance_sg" {
         protocol    = "-1"
         cidr_blocks = ["0.0.0.0/0"]
     }
-
-    tags   = merge(local.tags, { Name = "sg-${local.name_suffix}"})
-
 }
 # Ateičiai - jei reik ec2 instance'o - pasidarai vpc, pasidarai subnetą, pasidarai IGW, route table, route table association, kad 
 # surištum route table ir subnetą, routą pasidarai, kad uždėtum igw and route table ir galiausiai security grupes su ingress
@@ -108,7 +89,7 @@ resource "aws_instance" "app_server" {
     subnet_id              = aws_subnet.main.id
     vpc_security_group_ids = [aws_security_group.instance_sg.id]
     tags                   = {
-        Name = "App-server-${var.environment}"
+        Name = "VM-${var.environment}"
     }
 }
 
@@ -117,7 +98,6 @@ resource "aws_instance" "backend_server" {
     instance_type          = "t2.micro"
     subnet_id              = aws_subnet.main.id
     vpc_security_group_ids = [aws_security_group.instance_sg.id]
-    tags                   = "${merge(local.tags, {Name="backend-server-${local.name_suffix}"})}"
 }
 
 ############################################################
