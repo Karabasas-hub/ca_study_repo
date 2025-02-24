@@ -1,0 +1,1 @@
+time="2025-02-24T20:03:39+02:00" level=info msg="Info message"
